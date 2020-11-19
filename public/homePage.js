@@ -34,9 +34,9 @@ moneyManager.addMoneyCallback = function(data) {
     ApiConnector.addMoney(data, (response) => {
         if (response.success) {
             ProfileWidget.showProfile(response.data);
-            favoritesWidget.setMessage(true, 'Баланс пополнен');
+            moneyManager.setMessage(true, 'Баланс пополнен');
         } else {
-            favoritesWidget.setMessage(false, response.data);
+            moneyManager.setMessage(false, 'Ошибка при пополнении баланса!');
         }
     })
 };
@@ -45,9 +45,9 @@ moneyManager.conversionMoneyCallback = function (data) {
     ApiConnector.convertMoney(data, (response) => {
         if (response.success) {
           ProfileWidget.showProfile(response.data);
-            favoritesWidget.setMessage(true, 'Конвертация завершена');
+            moneyManager.setMessage(true, 'Конвертация завершена');
         } else {
-            favoritesWidget.setMessage(false, response.data);
+            moneyManager.setMessage(false, 'Ошибка конвертации!');
         }
     })
 };
@@ -58,7 +58,7 @@ moneyManager.sendMoneyCallback = function (data) {
           ProfileWidget.showProfile(response.data);
             favoritesWidget.setMessage(true, 'Перевод завершен');
         } else {
-           favoritesWidget.setMessage(false, response.data); 
+           favoritesWidget.setMessage(false, 'Ошибка при переводе!'); 
         }
     })
 };
@@ -83,7 +83,7 @@ favoritesWidget.addUserCallback = function (data) {
             moneyManager.updateUsersList(response.data);
             favoritesWidget.setMessage(true, 'Пользователь добавлен');
         } else {
-            favoritesWidget.setMessage(false, response.data);
+            favoritesWidget.setMessage(false, 'Ошибка при добавлении пользователя!');
         }
     })
 };
@@ -96,7 +96,7 @@ favoritesWidget.removeUserCallback = function (id) {
             moneyManager.updateUsersList(response.data);
             favoritesWidget.setMessage(true, 'Пользователь удален');
         } else {
-            favoritesWidget.setMessage(false, response.data);
+            favoritesWidget.setMessage(false, 'Ошибка при удалении пользователя!');
         }
     });
 };
